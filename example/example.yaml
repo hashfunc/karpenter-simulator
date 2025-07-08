@@ -1,0 +1,16 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: example
+spec:
+  disruption:
+    budgets:
+    - nodes: 10%
+    - schedule: "0 9 * * *"
+      duration: 8h
+      nodes: "0"
+    - schedule: "0 17 * * *"
+      duration: 4h
+      nodes: "1"
+      reasons:
+      - "Drifted"
